@@ -6,7 +6,7 @@ students = []
 def student_list():
     cont = "yes"
     while(cont =="yes"):
-        method=input("What do you want to do? Type 'Create' to create a new file, 'Load' to open and edit the file, 'Remove' to delete a file, 'View' to view the file contents, or 'Exit' to exit.").lower()
+        method=input("What do you want to do? Type 'Create' to create a new file, 'Load' to open and edit the file, 'Remove' to delete a file, 'View' to view the file contents, or 'Exit' to exit.\n").lower()
         
         if(method == "load"):
             loadFile()
@@ -22,7 +22,9 @@ def student_list():
             print("Please select a correct option...")
 
 def viewFile():
+    viewFiles()
     fileName = input("What file do you want to view?")
+    
     f = open(fileName+".txt", "r")
     students = f.read()
     print(students)
@@ -41,6 +43,7 @@ def create():
 def loadFile():
     cont = "yes"
     while (cont == "yes"):
+        viewFiles()
         fileName = input("What file do you want do open?\n")
         f = open(fileName+".txt", "a")
 
@@ -65,6 +68,7 @@ def loadFile():
 def remFile():
     r = "yes"
     while r == "yes":
+        viewFiles()
         remove = input("Select a file to delete or type 'menu' to go back to the main menu.")
         if os.path.exists(remove+".txt"):
             os.remove(remove+".txt")
@@ -79,5 +83,9 @@ def remFile():
             r = "no"
         else:
             print("File does not exist...")
+
+def viewFiles():
+  fileList = os.listdir()
+  print(fileList)
 
 student_list()
