@@ -1,2 +1,2 @@
 # student_List
-Create and view a file of students (names and age)
+Create, delete, edit, load, and view lists you've created.
