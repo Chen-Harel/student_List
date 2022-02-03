@@ -23,13 +23,15 @@ def student_list():
 
 def viewFile():
     viewFiles()
-    fileName = input("What file do you want to view?")
+    fileName = input("What file do you want to view? Type 'menu' to return to the main menu.\n")
     if os.path.exists(fileName+".txt"):
       f = open(fileName+".txt", "r")
       students = f.read()
       print(students)
       print("File is loaded...")
       f.close()
+    elif fileName == "menu":
+      student_list()
     else:
       print("File does not exist...")
       viewFile()
@@ -58,7 +60,7 @@ def loadFile():
         student_dictionary.update({"age": age})
         students.append(student_dictionary)
 
-        save = input("Save and exit? Y or N.").capitalize()
+        save = input("Save and exit? Y or N.\n").capitalize()
 
         if save == "Y":
             f.write(str(students))
@@ -72,7 +74,7 @@ def remFile():
     r = "yes"
     while r == "yes":
         viewFiles()
-        remove = input("Select a file to delete or type 'menu' to go back to the main menu.")
+        remove = input("Select a file to delete or type 'menu' to go back to the main menu.\n")
         if os.path.exists(remove+".txt"):
             os.remove(remove+".txt")
             removeAgain = input("Delete another file? Y or N.\n").lower()
@@ -81,7 +83,7 @@ def remFile():
             elif removeAgain == "n":
                 student_list()
             else:
-                print("Select either Y or N.")
+                print("Select either Y or N.\n")
         elif remove == "menu":
             r = "no"
         else:
