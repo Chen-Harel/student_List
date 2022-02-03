@@ -24,12 +24,15 @@ def student_list():
 def viewFile():
     viewFiles()
     fileName = input("What file do you want to view?")
-    
-    f = open(fileName+".txt", "r")
-    students = f.read()
-    print(students)
-    print("File is loaded...")
-    f.close()
+    if os.path.exists(fileName+".txt"):
+      f = open(fileName+".txt", "r")
+      students = f.read()
+      print(students)
+      print("File is loaded...")
+      f.close()
+    else:
+      print("File does not exist...")
+      viewFile()
 
 def create():
     fileName = input("Pick a name for your file...\n")
